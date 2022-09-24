@@ -80,13 +80,13 @@ end)
 game:GetService("RunService").Heartbeat:Connect(function()
 if nobank == true then
 for i, v in pairs(game:GetService("Workspace").places.bank:GetChildren()) do 
-    if v.TouchInterest then v.Parent = game:GetService("Lighting")
+    if v:FindFirstChild("TouchInterest") then v.Parent = game:GetService("Lighting")
     
     end
 end
 else
     for i, v in pairs(game:GetService("Lighting"):GetChildren()) do 
-    if v.TouchInterest then v.Parent = game:GetService("Workspace")
+    if v:FindFirstChild("TouchInterest") then v.Parent = game:GetService("Workspace")
     
     end
 end
