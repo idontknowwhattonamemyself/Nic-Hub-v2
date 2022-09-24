@@ -1,5 +1,5 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "Nic Hub V2", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local Window = OrionLib:MakeWindow({Name = "Title of the library", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 local Autopickup = false
 local Autostomp = false
 local Tab = Window:MakeTab({
@@ -23,7 +23,7 @@ Tab:AddToggle({
 })
 game:GetService("RunService").Heartbeat:Connect(function()
      for i, v in pairs(game:GetService("Players"):GetChildren()) do
-     if not v == game:GetService("Players").LocalPlayer and  v.Character and v.Character.HumanoidRootPart and v.Character.HumanoidRootPart:FindFirstChild("Stompable") and Autostomp == true then
+     if not v == game:GetService("Players").LocalPlayer and v.Character and v.Character.HumanoidRootPart and v.Character.HumanoidRootPart:FindFirstChild("Stompable") and Autostomp == true then
 
 fireproximityprompt(v.Character.HumanoidRootPart.Stompable)
        
@@ -31,7 +31,7 @@ fireproximityprompt(v.Character.HumanoidRootPart.Stompable)
 end
     end)
 game:GetService("RunService").Heartbeat:Connect(function()
-     for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
+     for i, v in pairs(game:GetService("Workspace")["money_bags"]:GetDescendants()) do
      if v.Name == "Money_Bag" and Autopickup == true then
         wait(0.2)
         firetouchinterest(v.Outer,  game.Players.LocalPlayer.Character.HumanoidRootPart, 0)
