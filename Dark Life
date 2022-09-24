@@ -23,7 +23,7 @@ Tab:AddToggle({
 })
 game:GetService("RunService").Heartbeat:Connect(function()
      for i, v in pairs(game:GetService("Players"):GetChildren()) do
-     if v.Character and v.Character.HumanoidRootPart and v.Character.HumanoidRootPart:FindFirstChild("Stompable") and Autostomp == true then
+     if not v == game:GetService("Players").LocalPlayer and  v.Character and v.Character.HumanoidRootPart and v.Character.HumanoidRootPart:FindFirstChild("Stompable") and Autostomp == true then
 
 fireproximityprompt(v.Character.HumanoidRootPart.Stompable)
        
