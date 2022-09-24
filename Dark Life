@@ -2,12 +2,20 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 local Window = OrionLib:MakeWindow({Name = "Nic Hub v2.0", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 local Autopickup = false
 local Autostomp = false
+local nobank = false
 local Speed = false
 _G.Speedamt = 0
 local Tab = Window:MakeTab({
 	Name = "Main",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
+})
+Tab:AddToggle({
+	Name = "No Bank Lasers",
+	Default = false,
+	Callback = function(Value)
+		nobank = Value
+	end    
 })
 Tab:AddToggle({
 	Name = "Speed",
@@ -53,11 +61,11 @@ end
     end)
 game:GetService("RunService").Heartbeat:Connect(function()
      for i, v in pairs(game:GetService("Workspace")["money_bags"]:GetDescendants()) do
-     if v.Name == "Money_Bag" and Autopickup == true then
+     if v.Name == "TouchInterest" and AutoPickup == true then
         wait(0.2)
-        firetouchinterest(v.Outer,  game.Players.LocalPlayer.Character.HumanoidRootPart, 0)
+        firetouchinterest(v.Parent,  game.Players.LocalPlayer.Character.Head, 0)
         wait()
-        firetouchinterest(v.Outer,  game.Players.LocalPlayer.Character.HumanoidRootPart, 1)
+        firetouchinterest(v.Parent,  game.Players.LocalPlayer.Character.Head, 1)
        
      end
 end
@@ -68,4 +76,20 @@ if Speed == true then
     else
          game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = 32
         end
-    end)
+end)
+game:GetService("RunService").Heartbeat:Connect(function()
+if nobank == true then
+for i, v in pairs(game:GetService("Workspace").places.bank:GetChildren()) do 
+    if v.TouchInterest then v.Parent = game:GetService("Lighting")
+    
+    end
+end
+else
+    for i, v in pairs(game:GetService("Lighting"):GetChildren()) do 
+    if v.TouchInterest then v.Parent = game:GetService("Workspace")
+    
+    end
+end
+end
+end)
+OrionLib:Init()
