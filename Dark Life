@@ -2,10 +2,31 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 local Window = OrionLib:MakeWindow({Name = "Title of the library", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 local Autopickup = false
 local Autostomp = false
+local Speed = false
+_G.Speedamt = 0
 local Tab = Window:MakeTab({
 	Name = "Main",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
+})
+Tab:AddToggle({
+	Name = "Speed",
+	Default = false,
+	Callback = function(Value)
+		Speed = Value
+	end    
+})
+Tab:AddSlider({
+	Name = "Amount",
+	Min = 0,
+	Max = 100,
+	Default = 32,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "WalkSpeed",
+	Callback = function(Value)
+		_G.Speedamt = Value
+	end    
 })
 Tab:AddToggle({
 	Name = "Auto Stomp",
@@ -40,4 +61,11 @@ game:GetService("RunService").Heartbeat:Connect(function()
        
      end
 end
+end)
+game:GetService("RunService").Heartbeat:Connect(function()
+if Speed == true then
+    game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = _G.Speedamt
+    else
+         game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = 32
+        end
     end)
