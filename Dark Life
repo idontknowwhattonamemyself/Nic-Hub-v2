@@ -1,5 +1,5 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "Title of the library", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local Window = OrionLib:MakeWindow({Name = "Nic Hub v2.0", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 local Autopickup = false
 local Autostomp = false
 local Speed = false
@@ -19,7 +19,7 @@ Tab:AddToggle({
 Tab:AddSlider({
 	Name = "Amount",
 	Min = 0,
-	Max = 100,
+	Max = 200,
 	Default = 32,
 	Color = Color3.fromRGB(255,255,255),
 	Increment = 1,
