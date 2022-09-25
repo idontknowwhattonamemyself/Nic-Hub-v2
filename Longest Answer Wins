@@ -8,7 +8,7 @@ local Tab = Window:MakeTab({
 local PlankForceamt = 0
 local PlankForce = false
 local aa = false
-
+local aw = false
 
 local m = Window:MakeTab({
 	Name = "Misc",
@@ -118,6 +118,13 @@ Tab:AddToggle({
 	end    
 })
 Tab:AddToggle({
+	Name = "Auto Win",
+	Default = false,
+	Callback = function(awtog)
+	aw = awtog
+	end    
+})
+Tab:AddToggle({
 	Name = "Plank Force",
 	Default = false,
 	Callback = function(PlankForceToggle)
@@ -164,7 +171,11 @@ game:GetService("RunService").Heartbeat:Connect(function()  if  game:GetService(
         game:GetService("Lighting").Water.Parent = game:GetService("Workspace")
 end
 end)
-
+game:GetService("RunService").Heartbeat:Connect(function()
+    if  aw == true and  game:GetService("Players").LocalPlayer.Character and  game:GetService("Players").LocalPlayer.Character.HumanoidRootPart then
+        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-217, 59, 110)
+        end
+    end)
 
   
 OrionLib:Init()
