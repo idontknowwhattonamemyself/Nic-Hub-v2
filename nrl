@@ -57,23 +57,7 @@ Combat:AddToggle({
 		kowner = Value
 	end    
 })
-Tab:AddToggle({
-	Name = "Speed",
-	Default = false,
-	 Save = true,
-	Callback = function(Value)
-game:GetService("RunService").RenderStepped:Connect(function()
-		    if game:GetService("Players").LocalPlayer.Character then
-		     
-		        game:GetService("Workspace").LocalPlayer.Character.Humanoid.WalkSpeed = 250
-		    end
-	        end)
-		   
-		
-	    
-		
-	end    
-})
+
 
 Tab:AddSlider({
 	Name = "Climb Multiplier",
