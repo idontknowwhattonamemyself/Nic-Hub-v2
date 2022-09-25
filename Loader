@@ -2,4 +2,10 @@ if game.PlaceId == 9992339729 then
 loadstring(game:HttpGet("https://raw.githubusercontent.com/idontknowwhattonamemyself/Nic-Hub-v2/Lua/Longest%20Answer%20Wins"))()
 elseif game.PlaceId == 10041108328 then
 loadstring(game:HttpGet("https://raw.githubusercontent.com/idontknowwhattonamemyself/Nic-Hub-v2/Lua/Dark%20Life"))()
+
+
+
+elseif game.PlaceId == 10858274778 then
+loadstring(game:HttpGet("https://github.com/idontknowwhattonamemyself/Nic-Hub-v2/blob/Lua/nrl"))()
+
 end
