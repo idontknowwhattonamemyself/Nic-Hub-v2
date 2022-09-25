@@ -13,11 +13,13 @@ local leg = Window:MakeTab({
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
+
 local m = Window:MakeTab({
 	Name = "Misc",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
+
 Tab:AddButton({
 	Name = "Answer Question",
 	Callback = function()
@@ -50,6 +52,20 @@ game:GetService("ReplicatedStorage").SubmittedAnswer:FireServer(unpack(args))
 	
       		        end
   	end    
+})
+
+m:AddDropdown({
+	Name = "Plank Skin",
+	Default = "blue",
+	Options = {"blue", "red", "yellow", "green", "orange", "violet","pink","grey","white","black","rainbow","zigzag","zoom","space","crisscross","rose","spring","zebra","marble","achromatic","classic","lavender","blush","azure","dynamic","stitch","lush","jelly","spiderman","pastel","fall"},
+	Callback = function(Value)
+		local args = {
+    [1] = Value
+}
+
+game:GetService("ReplicatedStorage").blockSkinFire:FireServer(unpack(args))
+
+	end    
 })
 Tab:AddButton({
 	Name = "Say Longest Possible Answer",
