@@ -8,11 +8,7 @@ local Tab = Window:MakeTab({
 local PlankForceamt = 0
 local PlankForce = false
 local aa = false
-local leg = Window:MakeTab({
-	Name = "Legit",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
+
 
 local m = Window:MakeTab({
 	Name = "Misc",
@@ -83,7 +79,7 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
       		        end
   	end    
 })
-leg:AddButton({
+m:AddButton({
 	Name = "Notify Longest Possible Answer",
 	Callback = function()
       		if game:GetService("ReplicatedStorage").HintAnswer.Value == "" then
