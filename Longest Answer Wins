@@ -5,6 +5,8 @@ local Tab = Window:MakeTab({
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
+local PlankForceamt = 0
+local PlankForce = false
 local aa = false
 local leg = Window:MakeTab({
 	Name = "Legit",
@@ -20,7 +22,7 @@ Tab:AddButton({
 	Name = "Answer Question",
 	Callback = function()
       		
-	if   game:GetService("Players").LocalPlayer.PlayerGui.TimeLeftQuestion and game:GetService("Players").LocalPlayer.PlayerGui.TimeLeftQuestion.Enabled == true  and game:GetService("Players").LocalPlayer.PlayerGui.TimeLeftQuestion.SubmitAlready.Value == false and  game:GetService("ReplicatedStorage").HintAnswer.Value ~= ""  then
+	if   PlankForce == false and game:GetService("Players").LocalPlayer.PlayerGui.TimeLeftQuestion and game:GetService("Players").LocalPlayer.PlayerGui.TimeLeftQuestion.Enabled == true  and game:GetService("Players").LocalPlayer.PlayerGui.TimeLeftQuestion.SubmitAlready.Value == false and  game:GetService("ReplicatedStorage").HintAnswer.Value ~= ""  then
 
 local arg2 = string.len(game:GetService("ReplicatedStorage").HintAnswer.Value)
 
@@ -34,8 +36,17 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage").SubmittedAnswer:FireServer(unpack(args))
+elseif  PlankForce == true and game:GetService("Players").LocalPlayer.PlayerGui.TimeLeftQuestion and game:GetService("Players").LocalPlayer.PlayerGui.TimeLeftQuestion.Enabled == true  and game:GetService("Players").LocalPlayer.PlayerGui.TimeLeftQuestion.SubmitAlready.Value == false and  game:GetService("ReplicatedStorage").HintAnswer.Value ~= "" then
+	local args = {
+    [1] = game:GetService("ReplicatedStorage").HintAnswer.Value,
+    [2] = PlankForceamt
+    
 
-	
+
+
+}
+
+game:GetService("ReplicatedStorage").SubmittedAnswer:FireServer(unpack(args))
 	
       		        end
   	end    
@@ -78,11 +89,10 @@ OrionLib:MakeNotification({
   	end    
 })
 
-local PlankForceamt = 0
-local PlankForce = false
+
 local WaterDisabled = false
 m:AddToggle({
-	Name = "In Match",
+	Name = "In Game Spoofer",
 	Default = false,
 	Callback = function(ingametog)
 	game:GetService("Players").LocalPlayer.Playing.Value = ingametog	
@@ -120,7 +130,7 @@ hook = hookmetamethod(game, "__namecall", newcclosure(function(self, ...)
     local Args = {...}
    
     local method = getnamecallmethod()
-    if PlankForce == true and not checkcaller() and self.Name == "SubmittedAnswer" and method == "FireServer" then
+    if PlankForce == true and  self.Name == "SubmittedAnswer" and method == "FireServer"  and not checkcaller() then
 
      if (Args[2]) then
          Args[2] = PlankForceamt
