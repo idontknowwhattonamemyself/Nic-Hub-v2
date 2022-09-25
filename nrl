@@ -7,6 +7,7 @@ local Nofall = false
 local NoBarriers = false
 local kowner = false
 local nstun = false
+
 local FlySpeed = 0
 
 local Tab = Window:MakeTab({
@@ -14,7 +15,7 @@ local Tab = Window:MakeTab({
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
-
+local Novampburn = false
 Tab:AddBind({
 	Name = "Fly",
 	Default = Enum.KeyCode.Z,
@@ -42,6 +43,14 @@ local Combat = Window:MakeTab({
 	PremiumOnly = false
 })
 Combat:AddToggle({
+	Name = "No Vamp Burn",
+	Default = false,
+	 Save = true,
+	Callback = function(Value)
+		Novampburn = Value
+	end    
+})
+Combat:AddToggle({
 	Name = "No Fall Damage",
 	Default = false,
 	 Save = true,
@@ -57,7 +66,14 @@ Combat:AddToggle({
 		kowner = Value
 	end    
 })
-
+Combat:AddToggle({
+	Name = "No Fire",
+	Default = false,
+	 Save = true,
+	Callback = function(Value)
+		nstun = Value
+	end    
+})
 
 Tab:AddSlider({
 	Name = "Climb Multiplier",
@@ -92,6 +108,19 @@ elseif game:GetService("Players").LocalPlayer.Character and game:GetService("Pla
     game:GetService("Players").LocalPlayer.Character.Boosts.ClimbBoost.Value = _G.ClimbBoost
 end
 end)
+game:GetService("RunService").Heartbeat:Connect(function()
+	for i, v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do 
+		if v.Name == "Burning" and nstun == true then
+		local args = {
+		[1] = 180,
+		[2] = "normal"
+	}
+	
+	game:GetService("Players").LocalPlayer.Character.CharacterHandler.Remotes.Dodge:FireServer(unpack(args))
+	
+	end
+	end
+	end)
 local bar = Instance.new("Folder")
 bar.Name = "Barriers"
 bar.Parent = game:GetService("Workspace")
@@ -120,18 +149,40 @@ game:GetService("RunService").RenderStepped:Connect(function()
     end)
 
 
-game:GetService("Players").LocalPlayer.Character.DescendantAdded:Connect(function(child)
 
-if child.Name == "RagdollAttachment" or child.Name == "FreezeRoot" and kowner == true  then
-    child:remove()
-    end
 
+game:GetService("RunService").Heartbeat:Connect(function()
+	if game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character:FindFirstChild("RagdollAttachment") and kowner == true then 
+		game:GetService("Players").LocalPlayer.Character:FindFirstChild("RagdollAttachment"):remove()
+	end
 end)
+game:GetService("RunService").Heartbeat:Connect(function()
+	if game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character:FindFirstChild("ConstraintJoint") and kowner == true then 
+		game:GetService("Players").LocalPlayer.Character:FindFirstChild("ConstraintJoint"):remove()
+	end
+end)
+
+game:GetService("RunService").Heartbeat:Connect(function()
+	if game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Knocked") and kowner == true then 
+		game:GetService("Players").LocalPlayer.Character:FindFirstChild("Knocked"):remove()
+	end
+end)
+game:GetService("RunService").Heartbeat:Connect(function()
+	if game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Unconscious") and kowner == true then 
+		game:GetService("Players").LocalPlayer.Character:FindFirstChild("Unconscious"):remove()
+	end
+end)
+game:GetService("RunService").Heartbeat:Connect(function()
+	for i, v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do 
+		if v:FindFirstChild("Collision") and kowner == true then
+			v:FindFirstChild("Collision"):remove()
+	end
+	end
+	end)
 getgenv().Toggled = false;
 	local Player = game:GetService('Players').LocalPlayer;
 	local Camera = workspace.Camera;
-	
-	local autofarmt7 = false
+
 	local UIS = game:GetService("UserInputService")
 	local holdingWKey = false
 	local holdingSKey = false
@@ -198,5 +249,13 @@ elseif game:GetService("StarterPlayer"):FindFirstChild("FallDamage") and game:Ge
     
 end
 end)
+game:GetService("RunService").RenderStepped:Connect(function()
+	if game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character.CharacterHandler and game:GetService("Players").LocalPlayer.Character.CharacterHandler.Remotes and game:GetService("Players").LocalPlayer.Character.CharacterHandler.Remotes:FindFirstChild("SunBurn") and Novampburn == true then
+		game:GetService("Players").LocalPlayer.Character.CharacterHandler.Remotes.SunBurn.Parent = game:GetService("StarterPlayer")
+	elseif game:GetService("StarterPlayer"):FindFirstChild("SunBurn") and game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character.CharacterHandler and game:GetService("Players").LocalPlayer.Character.CharacterHandler.Remotes and  Nofall == false then
+		game:GetService("StarterPlayer").SunBurn.Parent = game:GetService("Players").LocalPlayer.Character.CharacterHandler.Remotes
+		
+	end
+	end)
 
 OrionLib:Init()
