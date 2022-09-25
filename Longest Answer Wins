@@ -1,13 +1,93 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "Nic Hub v2", HidePremium = false, SaveConfig = true, ConfigFolder = "Nic Hub"})
 local Tab = Window:MakeTab({
-	Name = "Mods",
+	Name = "Blatant",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
+local aa = false
+local leg = Window:MakeTab({
+	Name = "Legit",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+local m = Window:MakeTab({
+	Name = "Misc",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+Tab:AddButton({
+	Name = "Answer Question",
+	Callback = function()
+      		
+	if   game:GetService("Players").LocalPlayer.PlayerGui.TimeLeftQuestion and game:GetService("Players").LocalPlayer.PlayerGui.TimeLeftQuestion.Enabled == true  and game:GetService("Players").LocalPlayer.PlayerGui.TimeLeftQuestion.SubmitAlready.Value == false and  game:GetService("ReplicatedStorage").HintAnswer.Value ~= ""  then
+
+local arg2 = string.len(game:GetService("ReplicatedStorage").HintAnswer.Value)
+
+local args = {
+    [1] = game:GetService("ReplicatedStorage").HintAnswer.Value,
+    [2] = arg2
+    
+
+
+
+}
+
+game:GetService("ReplicatedStorage").SubmittedAnswer:FireServer(unpack(args))
+
+	
+	
+      		        end
+  	end    
+})
+Tab:AddButton({
+	Name = "Say Longest Possible Answer",
+	Callback = function()
+      		if game:GetService("ReplicatedStorage").HintAnswer.Value == "" then
+
+      		    else
+      		        local args = {
+    [1] = "Longest Possible Answer Is ".. game:GetService("ReplicatedStorage").HintAnswer.Value,
+    [2] = "All"
+}
+
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+
+      		        end
+  	end    
+})
+leg:AddButton({
+	Name = "Notify Longest Possible Answer",
+	Callback = function()
+      		if game:GetService("ReplicatedStorage").HintAnswer.Value == "" then
+OrionLib:MakeNotification({
+	Name = "Did Not Find An Answer",
+	Content = "Please Try Again After There Is A Question",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
+      		    else
+      		        OrionLib:MakeNotification({
+	Name = "Longest Possible Answer",
+	Content = game:GetService("ReplicatedStorage").HintAnswer.Value,
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
+
+      		        end
+  	end    
+})
+
 local PlankForceamt = 0
 local PlankForce = false
 local WaterDisabled = false
+m:AddToggle({
+	Name = "In Match",
+	Default = false,
+	Callback = function(ingametog)
+	game:GetService("Players").LocalPlayer.Playing.Value = ingametog	
+	end    
+})
 Tab:AddToggle({
 	Name = "Disable Water",
 	Default = false,
@@ -62,4 +142,7 @@ game:GetService("RunService").Heartbeat:Connect(function()  if  game:GetService(
         game:GetService("Lighting").Water.Parent = game:GetService("Workspace")
 end
 end)
+
+
+  
 OrionLib:Init()
