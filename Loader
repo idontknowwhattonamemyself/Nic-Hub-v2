@@ -6,6 +6,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/idontknowwhattonamemy
 
 
 elseif game.PlaceId == 10858274778 then
-loadstring(game:HttpGet("https://github.com/idontknowwhattonamemyself/Nic-Hub-v2/blob/Lua/nrl"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/idontknowwhattonamemyself/Nic-Hub-v2/Lua/nrl"))()
 
 end
