@@ -7,5 +7,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/idontknowwhattonamemy
 
 elseif game.PlaceId == 10858274778 then
 loadstring(game:HttpGet("https://raw.githubusercontent.com/idontknowwhattonamemyself/Nic-Hub-v2/Lua/nrl"))()
-
+elseif game.PlaceId == 10676523834 then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/idontknowwhattonamemyself/Nic-Hub-v2/Lua/Racing%20Rocket"))()
 end
