@@ -78,6 +78,31 @@ game:GetService("RunService").RenderStepped:Connect(function()
     }
     
     game:GetService("ReplicatedStorage").RemoteEvents.Star_RemoteEvent:FireServer(unpack(args))    
+    local args = {
+    [1] = "Use",
+    [2] = "1"
+}
+
+game:GetService("ReplicatedStorage").RemoteFuncs.Item_RemoteFunc:InvokeServer(unpack(args))
+local args = {
+    [1] = "Use",
+    [2] = "2"
+}
+
+game:GetService("ReplicatedStorage").RemoteFuncs.Item_RemoteFunc:InvokeServer(unpack(args))
+local args = {
+    [1] = "Use",
+    [2] = "3"
+}
+
+game:GetService("ReplicatedStorage").RemoteFuncs.Item_RemoteFunc:InvokeServer(unpack(args))
+local args = {
+    [1] = "Use",
+    [2] = "4"
+}
+
+game:GetService("ReplicatedStorage").RemoteFuncs.Item_RemoteFunc:InvokeServer(unpack(args))
+
 end
 end)
 game:GetService("RunService").Heartbeat:Connect(function()
