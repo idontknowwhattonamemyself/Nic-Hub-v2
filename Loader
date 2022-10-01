@@ -9,4 +9,6 @@ elseif game.PlaceId == 10858274778 then
 loadstring(game:HttpGet("https://raw.githubusercontent.com/idontknowwhattonamemyself/Nic-Hub-v2/Lua/nrl"))()
 elseif game.PlaceId == 10676523834 then
 loadstring(game:HttpGet("https://raw.githubusercontent.com/idontknowwhattonamemyself/Nic-Hub-v2/Lua/Racing%20Rocket"))()
+elseif game.PlaceId == 9649680488 then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/idontknowwhattonamemyself/Nic-Hub-v2/Lua/Backrooms%20Race%20Clicker"))()
 end
