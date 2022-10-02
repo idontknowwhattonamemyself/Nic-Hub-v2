@@ -2,6 +2,7 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 local Window = OrionLib:MakeWindow({Name = "Statue Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 local nf = false
 _G.cs = 0
+local nb = false
 local Nofall = false
 
 local NoBarriers = false
@@ -94,18 +95,7 @@ Misc:AddToggle({
 	Default = false,
 	 Save = true,
 	Callback = function(Value)
-		if game:GetService("Lighting").BagBlind then
-    game:GetService("Lighting").BagBlind.Enabled = Value
-end
-if game:GetService("Lighting").Blindness then
-    game:GetService("Lighting").Blindness.Enabled = Value
-end
-if game:GetService("Lighting").Concussion then
-    game:GetService("Lighting").Concussion.Enabled = Value
-end
-if  game:GetService("Lighting").Blur then
-    game:GetService("Lighting").Blur.Enabled = Value
-    end
+		nb = Value
 	end    
 })
 
@@ -298,5 +288,24 @@ game:GetService("RunService").RenderStepped:Connect(function()
 		
 	end
 	end)
+game:GetService("RunService").RenderStepped:Connect(function()
+if nb == true then
+if game:GetService("Lighting").BagBlind then
+    game:GetService("Lighting").BagBlind.Enabled = false
+end
+if game:GetService("Lighting").Blindness then
+    game:GetService("Lighting").Blindness.Enabled = false
+end
+if game:GetService("Lighting").Concussion then
+    game:GetService("Lighting").Concussion.Enabled = false
+end
+if  game:GetService("Lighting").Blur then
+    game:GetService("Lighting").Blur.Enabled = false
+end
+if game:GetService("Lighting").Chokeout then
+game:GetService("Lighting").Chokeout.Enabled = false
+end
 
+end
+end)
 OrionLib:Init()
