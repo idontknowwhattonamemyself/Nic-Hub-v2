@@ -81,7 +81,7 @@ local Misc = Window:MakeTab({
 	PremiumOnly = false
 })
 Misc:AddToggle({
-	Name = "Full Bright",
+	Name = "No Fog",
 	Default = false,
 	 Save = true,
 	Callback = function(Value)
