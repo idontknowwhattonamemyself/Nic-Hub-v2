@@ -89,6 +89,25 @@ Misc:AddToggle({
 	end    
 })
 
+Misc:AddToggle({
+	Name = "No Blind",
+	Default = false,
+	 Save = true,
+	Callback = function(Value)
+		if game:GetService("Lighting").BagBlind then
+    game:GetService("Lighting").BagBlind.Enabled = Value
+end
+if game:GetService("Lighting").Blindness then
+    game:GetService("Lighting").Blindness.Enabled = Value
+end
+if game:GetService("Lighting").Concussion then
+    game:GetService("Lighting").Concussion.Enabled = Value
+end
+if  game:GetService("Lighting").Blur then
+    game:GetService("Lighting").Blur.Enabled = Value
+    end
+	end    
+})
 
 
 Tab:AddSlider({
